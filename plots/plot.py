@@ -200,14 +200,14 @@ def plot_all_trajectories(fps=10):
 ##################################################################
 
 
-def plot_detections(fr, save, fps=10):
+def plot_detections(fr, save, img_dir=IMG_DIR, pos_dir=POS_DIR, fps=10):
     if save:
         if not os.path.exists(PLOTS_DIR):
             os.mkdir(PLOTS_DIR)
 
-    img = Image.open(os.path.join(IMG_DIR, "%06d.png" % fr)).convert('RGBA')
+    img = Image.open(os.path.join(img_dir, "%06d.png" % fr)).convert('RGBA')
     draw = ImageDraw.Draw(img)
-    all_bees = np.loadtxt(os.path.join(POS_DIR, "%06d.txt" % fr), delimiter=',').astype(np.int)
+    all_bees = np.loadtxt(os.path.join(pos_dir, "%06d.txt" % fr), delimiter=',').astype(np.int)
 
     for i in range(all_bees.shape[0]):
         x, y = all_bees[i, 0], all_bees[i, 1]
